@@ -407,6 +407,10 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1080
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|800
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|600
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|100
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|31
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|100
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|31
 
   gCixPlatformTokenSpaceGuid.PcdDynamicUint64Test|0x11111111
 [PcdsDynamicHii.common.DEFAULT]

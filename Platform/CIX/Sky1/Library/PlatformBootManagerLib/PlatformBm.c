@@ -40,6 +40,8 @@
 
 #define DP_NODE_LEN(Type)  { (UINT8)sizeof (Type), (UINT8)(sizeof (Type) >> 8) }
 
+#define BOOT_PROMPT  L"Setup (ESC/F2)   Shell (F1)   Continue (Enter)"
+
 // #ifdef DEBUG
 // #undef DEBUG
 // #define DEBUG(Expression) DebugPrint Expression
@@ -602,6 +604,7 @@ PlatformRegisterOptionsAndKeys (
   EFI_STATUS                    Status;
   EFI_INPUT_KEY                 Enter;
   EFI_INPUT_KEY                 F2;
+  EFI_INPUT_KEY                 F1;
   EFI_INPUT_KEY                 Esc;
   EFI_BOOT_MANAGER_LOAD_OPTION  BootOption;
 
@@ -640,6 +643,13 @@ PlatformRegisterOptionsAndKeys (
              NULL
              );
   ASSERT (Status == EFI_SUCCESS || Status == EFI_ALREADY_STARTED);
+
+  //
+  // Register UEFI Shell
+  //
+  F1.ScanCode    = SCAN_F1;
+  F1.UnicodeChar = CHAR_NULL;
+  PlatformRegisterFvBootOption (&gUefiShellFileGuid, L"UEFI Shell", 0, &F1);
 }
 
 
@@ -1019,7 +1029,7 @@ PlatformBootManagerAfterConsole (
         );
     }
 
-    Print (L"Press ESCAPE for boot options \n");
+    Print (BOOT_PROMPT);
   } else if (FirmwareVerLength > 0) {
     Status = gBS->HandleProtocol (
                     gST->ConsoleOutHandle,
@@ -1058,22 +1068,6 @@ PlatformBootManagerAfterConsole (
   //
   HandleCapsules ();
 
-  //
-  // Register UEFI Shell
-  //
-  Key.ScanCode    = SCAN_NULL;
-  Key.UnicodeChar = L's';
-  PlatformRegisterFvBootOption (&gUefiShellFileGuid, L"UEFI Shell", 0, &Key);
-
-  if (PcdGetBool (PcdAndroidBoot) == TRUE) {
-    //
-    // Register Android Loader
-    //
-    Key.ScanCode    = SCAN_NULL;
-    Key.UnicodeChar = L'a';
-    PlatformRegisterFvBootOption (&gCixAbselectGuid, L"Android S1 Loader", LOAD_OPTION_ACTIVE, &Key);
-  }
-
   POST_CODE (BMAfterConsole);
   EfiEventGroupSignal (&gCixExitConsoleCallBackGuid);
 }
@@ -1103,7 +1097,7 @@ PlatformBootManagerWaitCallback (
   Status = BootLogoUpdateProgress (
              White.Pixel,
              Black.Pixel,
-             L"Press ESCAPE for boot options",
+             BOOT_PROMPT,
              White.Pixel,
              (Timeout - TimeoutRemain) * 100 / Timeout,
              0
