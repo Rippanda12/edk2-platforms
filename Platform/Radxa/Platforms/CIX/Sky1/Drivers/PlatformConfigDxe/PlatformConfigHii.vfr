@@ -76,12 +76,14 @@ formset
       prompt      = STRING_TOKEN(STR_CPU_FREQ_MAX_PROMPT),
       help        = STRING_TOKEN(STR_CPU_FREQ_MAX_PROMPT_HELP),
       default     = FixedPcdGet8 (PcdCpuFMax),
-      option text = STRING_TOKEN(STR_CPU_FREQ_2_5), value = 1, flags = RESET_REQUIRED;
-      option text = STRING_TOKEN(STR_CPU_FREQ_2_6), value = 0, flags = RESET_REQUIRED;
-      option text = STRING_TOKEN(STR_CPU_FREQ_MAX), value = 2, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_CPU_FREQ_2_5), value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_CPU_FREQ_2_6), value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_CPU_FREQ_2_7), value = 2, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_CPU_FREQ_2_8), value = 3, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_CPU_FREQ_MAX), value = 4, flags = RESET_REQUIRED;
     endoneof;
 
-    suppressif NOT ideqval RadxaSetupVar.CpuFMax == 0x02;
+    suppressif NOT ideqval RadxaSetupVar.CpuFMax == 0x04;
       oneof varid   = RadxaSetupVar.CpuBoostTrigger,
         prompt      = STRING_TOKEN(STR_CPU_BOOST_TRIGGER_PROMPT),
         help        = STRING_TOKEN(STR_CPU_BOOST_TRIGGER_PROMPT_HELP),

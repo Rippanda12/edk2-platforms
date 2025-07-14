@@ -58,6 +58,8 @@ typedef struct {
 
   #define CPU_MAX_FREQ_2_5G 0
   #define CPU_MAX_FREQ_2_6G 1
+  #define CPU_MAX_FREQ_2_7G 2
+  #define CPU_MAX_FREQ_2_8G 3
   uint8_t  cpufmax;                      //config cpu max frquency
 
   uint32_t FeatHash;
