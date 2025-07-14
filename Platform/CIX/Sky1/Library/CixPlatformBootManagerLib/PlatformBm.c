@@ -986,13 +986,21 @@ PlatformBootManagerAfterConsole (
   Status = BootLogoEnableLogo ();
   if (EFI_ERROR (Status)) {
     if (FirmwareVerLength > 0) {
-      Print (
-        VERSION_STRING_PREFIX L"%s\n",
+      PosX = (GraphicsOutput->Mode->Info->HorizontalResolution -
+              (StrLen (VERSION_STRING_PREFIX) + FirmwareVerLength) *
+              EFI_GLYPH_WIDTH) / 2;
+      PosY = 0;
+
+      PrintXY (
+        PosX,
+        PosY,
+        NULL,
+        NULL,
+        VERSION_STRING_PREFIX L"%s",
         PcdGetPtr (PcdFirmwareVersionString)
         );
     }
 
-    Print (BOOT_PROMPT);
   } else if (FirmwareVerLength > 0) {
     Status = gBS->HandleProtocol (
                     gST->ConsoleOutHandle,
