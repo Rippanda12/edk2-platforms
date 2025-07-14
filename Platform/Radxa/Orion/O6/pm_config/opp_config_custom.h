@@ -58,7 +58,7 @@ static domain_opp_config_t dxs_gb0 = {
         { .level = 2200UL, .voltage = 790 },
         { .level = 2400UL, .voltage = 850 },
         { .level = 2600UL, .voltage = 920 },
-        { .level = 2800UL, .voltage = 950 },   /* sustained */
+        { .level = 2700UL, .voltage = 940 },   /* sustained */
     },
 };
 
@@ -73,7 +73,7 @@ static domain_opp_config_t dxs_gb1 = {
         { .level = 2200UL, .voltage = 790 },
         { .level = 2400UL, .voltage = 850 },
         { .level = 2600UL, .voltage = 920 },
-        { .level = 2800UL, .voltage = 950 },   /* sustained */
+        { .level = 2700UL, .voltage = 940 },   /* sustained */
     },
 };
 
@@ -87,7 +87,7 @@ static domain_opp_config_t dxs_gm0 = {
         { .level = 1800UL, .voltage = 790 },
         { .level = 2000UL, .voltage = 790 },
         { .level = 2200UL, .voltage = 850 },
-        { .level = 2400UL, .voltage = 920 },   /* sustained */
+        { .level = 2600UL, .voltage = 940 },   /* sustained */
     },
 };
 
@@ -101,7 +101,7 @@ static domain_opp_config_t dxs_gm1 = {
         { .level = 1800UL, .voltage = 790 },
         { .level = 2000UL, .voltage = 790 },
         { .level = 2200UL, .voltage = 850 },
-        { .level = 2400UL, .voltage = 920 },   /* sustained */
+        { .level = 2600UL, .voltage = 940 },   /* sustained */
     },
 };
 
